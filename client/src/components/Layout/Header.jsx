@@ -1,24 +1,37 @@
 import { Reddit } from '@mui/icons-material'
-import { AppBar, Box, IconButton, Toolbar ,Tooltip,Typography} from '@mui/material'
+import { AppBar, Backdrop, Box, IconButton, Toolbar ,Tooltip,Typography} from '@mui/material'
 import {red } from '@mui/material/colors'
-import {Menu as MenuIcon,Search as SearchIcon, Add as AddIcon, Group as GroupIcon, Logout as LogoutIcon} from '@mui/icons-material'
+import {Menu as MenuIcon,Search as SearchIcon, Add as AddIcon, Group as GroupIcon, Logout as LogoutIcon , Notifications as NotificationsIcon} from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
-import React from 'react'
+import React, { Suspense, useState,lazy } from 'react'
+// import SearchDialog from '../specific/Search'
 
 
-
+const SearchDialog= lazy(()=> import ("../specific/Search"));
+const NotificationDialog =lazy(()=> import ("../specific/Notifications"));
+const NewGroupDialog =lazy(()=> import ("../specific/NewGroup"));
 const Header = () => {
     const navigate = useNavigate();
+const [isMobile, setIsMobile]=useState(false);
+const [isSearch, setIsSearch]=useState(false);
+const [isNewGroup, setIsNewGroup]=useState(false);
+const [isNotification, setIsNotification]=useState(false);
+
+
+
     const handleMobile=()=>{
-        console.log("mobile");
+        setIsMobile((prev)=>!prev);
+
     };
     const openSearchDialog=()=>{
-        console.log("openSearchDialog");
+       setIsSearch((prev)=>!prev)
     };
     const openNewGroup=()=>{
-        console.log("openNewGroup");
+        setIsNewGroup((prev)=>!prev)
     };
-
+    const openNotification=()=>{
+        setIsNotification((prev)=>!prev)
+    };
     const     NavigatetoGroup=()=> navigate ('/groups');
     const LogoutHandler=()=>{
         console.log("LogoutHandler");
@@ -77,6 +90,12 @@ display:{xs:'block', sm:'none'},
     title={'Manage Group'}
     icon={  <GroupIcon/>}
     onClick={NavigatetoGroup}/>
+
+
+<IconBtn 
+    title={'Notification'}
+    icon={  <NotificationsIcon/>}
+    onClick={openNotification}/>
         {/* <Tooltip title=>    <IconButton color='inherit' size='large' onClick={}>
       
         </IconButton>
@@ -90,6 +109,30 @@ display:{xs:'block', sm:'none'},
 </AppBar>
 
     </Box>
+    {
+        isSearch &&
+        (
+            <Suspense fallback={<Backdrop open/>}>
+        <SearchDialog/>
+        </Suspense>
+        )
+    }
+      {
+        isNotification &&
+        (
+            <Suspense fallback={<Backdrop open/>}>
+        <NotificationDialog/>
+        </Suspense>
+        )
+    }
+      {
+        isNewGroup &&
+        (
+            <Suspense fallback={<Backdrop open/>}>
+        <NewGroupDialog/>
+        </Suspense>
+        )
+    }
     </>
   )
 }

@@ -1,6 +1,6 @@
 import { Avatar, Button, Container, IconButton, Paper, Stack, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { CameraAlt as CameraAltIcon, Password } from "@mui/icons-material";
+import { CameraAlt as CameraAltIcon } from "@mui/icons-material";
 import { VisuallyHiddenInput } from "../components/styles/StyledComponents";
 import { useFileHandler, useInputValidation } from '6pp';
 // , useStrongPassword
