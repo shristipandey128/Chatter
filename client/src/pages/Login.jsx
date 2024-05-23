@@ -5,6 +5,7 @@ import { VisuallyHiddenInput } from "../components/styles/StyledComponents";
 import { useFileHandler, useInputValidation } from '6pp';
 // , useStrongPassword
 import { usernameValidator } from "../utils/validators";
+import { bgGradient } from '../constants/color';
 
 
 
@@ -26,11 +27,13 @@ const handleSignUp = (e)=>{
     e.prevantDefault();
 };
   return(
-    // <div style={
-    //     {
-    //         "linear-gradient(rgba(200,200,200,0.5),right(120,110,220,0.5)",
-    //     }
-    // }>>/div>
+    <div 
+    style={{
+        backgroundImage:bgGradient,
+    }}
+    >
+
+    
     
        <Container component={"main"} maxWidth="xs" sx={{
         height:'100vh',
@@ -232,6 +235,7 @@ component='label'
 }
 </Paper>
   </Container>
+  </div>
   )
 }
 

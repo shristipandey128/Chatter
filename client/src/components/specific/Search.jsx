@@ -1,4 +1,4 @@
-import { Dialog, DialogTitle, InputAdornment, List, ListItem, ListItemText, Stack, TextField } from '@mui/material'
+import { Dialog, DialogTitle, InputAdornment, List, Stack, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import {useInputValidation} from '6pp'
 import { Search as SearchIcon } from '@mui/icons-material'
